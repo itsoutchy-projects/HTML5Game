@@ -10,6 +10,11 @@ export default class Input {
      * @type {Array<(ev:Event)>}
      */
     static scrollListeners = [];
+
+    static mousePos = {
+        x: 0,
+        y: 0
+    }
     
     /**
      * Initializes the `Input` class, this only has to be done once, it is done right before the game starts, when `HTML5Game.Start();` is called
@@ -37,6 +42,11 @@ export default class Input {
             Input.scrollListeners.forEach(function(value) {
                 value(ev);
             });
+        });
+
+        window.addEventListener("mousemove", function(ev) {
+            Input.mousePos.x = ev.clientX;
+            Input.mousePos.y = ev.clientY;
         });
     }
 

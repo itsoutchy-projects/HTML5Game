@@ -56,8 +56,6 @@ export default class HTML5Game {
         ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         let cameraOff = this.cameraOff;
 
-        ctx.scale(this.zoom, this.zoom);
-
         // Draws all the GameObjects
         this.objects.forEach(function(value, index, array) {
             if (value.src != undefined) {
@@ -76,6 +74,21 @@ export default class HTML5Game {
             }
         });
         requestAnimationFrame(this.Update);
+    }
+
+    Zoom(amount) {
+        let ctx = this.canvas.getContext("2d");
+        
+        ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
+        this.zoom += amount;
+        ctx.scale(this.zoom, this.zoom);
+        ctx.translate(-(this.canvas.width / 2), -(this.canvas.height / 2));
+    }
+
+    ResetZoom() {
+        let ctx = this.canvas.getContext("2d");
+        this.zoom = 1;
+        ctx.scale(this.zoom, this.zoom);
     }
 
     /**

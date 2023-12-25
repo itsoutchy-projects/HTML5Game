@@ -33,9 +33,9 @@ Start by adding a canvas to your HTML file like this:
 
 To initialize your game, initialize a HTML5Game instance like so:
 ```js
-let canvas = document.getElementById("gameCanvas"); // This is where your objects will be drawn, I'll refer to this as the update callback
+let canvas = document.getElementById("gameCanvas"); // This is where your objects will be drawn
 let game = new HTML5Game(canvas, function() {
-  // This will be called on every frame
+  // This will be called on every frame, I'll refer to this as the update callback
 });
 ```
 Now we can add objects to your game!

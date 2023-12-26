@@ -17,7 +17,7 @@ export default class GameObject {
      * @param {Number} y The starting Y position of the `GameObject`
      * @param {Number} width The width of the `GameObject`
      * @param {Number} height The height of the `GameObject`
-     * @param {Boolean} isUI Is this `GameObject` on the UI? Makes the object not move with the camera if so
+     * @param {Boolean} isUI Is this `GameObject` on the UI? Makes the object move with the camera if so
      * @param {string | undefined} src The source image of the `GameObject` used if `colour` doesn't have a value
      */
     constructor(colour, x, y, width, height, isUI, src) {

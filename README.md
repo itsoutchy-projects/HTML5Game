@@ -41,7 +41,7 @@ let game = new HTML5Game(canvas, function() {
 Now we can add objects to your game!
 To do this, make a GameObject like so:
 ```js
-let object = new GameObject("black", 0, 0, 50, 50);
+let object = new GameObject("black", 0, 0, 50, 50, false); // This GameObject will not follow the camera unless you change the last parameter to "true" or counter the camera offsets
 ```
 Then we need to add it to the list of objects to be drawn:
 ```js

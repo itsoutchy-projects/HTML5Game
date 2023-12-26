@@ -58,24 +58,45 @@ export default class HTML5Game {
 
         // Draws all the GameObjects
         this.objects.forEach(function(value, index, array) {
-            if (value.src != undefined) {
-                // This object is an image, so we need to do it differently
-                let img = document.createElement("img");
-                img.src = value.src;
-                img.width = value.width;
-                img.height = value.height;
-                ctx.drawImage(img, value.x - cameraOff.x, value.y - cameraOff.y);
+            if (!value.isUI) {
+                if (value.src != undefined) {
+                    // This object is an image, so we need to do it differently
+                    let img = document.createElement("img");
+                    img.src = value.src;
+                    img.width = value.width;
+                    img.height = value.height;
+                    ctx.drawImage(img, value.x - cameraOff.x, value.y - cameraOff.y);
+                } else {
+                    // This object is a regular rectangle, so it's easy to draw it
+                    let fill = ctx.fillStyle;
+                    ctx.fillStyle = value.colour;
+                    ctx.fillRect(value.x - cameraOff.x, value.y - cameraOff.y, value.width, value.height);
+                    ctx.fillStyle = fill;
+                }
             } else {
-                // This object is a regular rectangle, so it's easy to draw it
-                let fill = ctx.fillStyle;
-                ctx.fillStyle = value.colour;
-                ctx.fillRect(value.x - cameraOff.x, value.y - cameraOff.y, value.width, value.height);
-                ctx.fillStyle = fill;
+                if (value.src != undefined) {
+                    // This object is an image, so we need to do it differently
+                    let img = document.createElement("img");
+                    img.src = value.src;
+                    img.width = value.width;
+                    img.height = value.height;
+                    ctx.drawImage(img, value.x, value.y);
+                } else {
+                    // This object is a regular rectangle, so it's easy to draw it
+                    let fill = ctx.fillStyle;
+                    ctx.fillStyle = value.colour;
+                    ctx.fillRect(value.x, value.y, value.width, value.height);
+                    ctx.fillStyle = fill;
+                }
             }
         });
         requestAnimationFrame(this.Update);
     }
 
+    /**
+     * Zooms the game by `amount`
+     * @param {Number} amount The amount to zoom
+     */
     Zoom(amount) {
         let ctx = this.canvas.getContext("2d");
         
@@ -85,17 +106,24 @@ export default class HTML5Game {
         ctx.translate(-(this.canvas.width / 2), -(this.canvas.height / 2));
     }
 
+    /**
+     * Resets the zoom to 1
+     */
     ResetZoom() {
         let ctx = this.canvas.getContext("2d");
+
+        ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
         this.zoom = 1;
         ctx.scale(this.zoom, this.zoom);
+        ctx.translate(-(this.canvas.width / 2), -(this.canvas.height / 2));
     }
 
     /**
      * Starts the HTML5 Game, this will call updates
      */
     Start() {
-        let input = new Input();
+        let input = new Input(this);
+        Input.game = this;
         requestAnimationFrame(this.Update);
     }
 }

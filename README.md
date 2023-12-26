@@ -4,7 +4,7 @@ A set of classes to assist your web game development journey
 
 ## How do I use this?
 ### Importing
-You need to include the base module in your project, so grab the [HTML5Game.js](https://github.com/itsoutchy-projects/HTML5Game/blob/main/HTML5Game.js) and [GameObject.js](https://github.com/itsoutchy-projects/HTML5Game/blob/main/GameObject.js) scripts from this repo.
+You need to include the base modules in your project, so grab the [HTML5Game.js](https://github.com/itsoutchy-projects/HTML5Game/blob/main/HTML5Game.js) and [GameObject.js](https://github.com/itsoutchy-projects/HTML5Game/blob/main/GameObject.js) scripts from this repo.
 
 Then import it like this (your script must be a module to do this)
 ```js
